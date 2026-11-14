@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>埃及鱼计算器gpt</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="calculator-card">
+<h2>埃及鱼计算器</h2>
+<div class="subtitle">支持直选组号与复式组合 (三中三/二中二)</div>
+<div class="input-group">
+<label for="commandInput">输入 / 粘贴下单内容：</label>
+<textarea id="commandInput" placeholder="有工母想做    有筛母放过"></textarea>
+</div>
+<button class="btn-paste" onclick="pasteFromClipboard()">一键粘贴剪贴板内容</button>
+<button class="btn-calc" onclick="calculate()">计算并加入明细</button>
+<div class="error-tip" id="errorTip"></div>
+<div class="paste-tip" id="pasteTip"></div>
+<div class="copy-success" id="copySuccess">✓ 结果已成功复制到剪贴板</div>
+<div class="history-section">
+<label>计算明细历史：</label>
+<ul class="history-list" id="historyList"><div class="empty-tip">暂无计算记录</div></ul>
+</div>
+<div class="summary-bar">
+<div class="action-btns">
+<button class="btn-clear" onclick="showClearConfirm()">一键清空</button>
+<button class="btn-copy" onclick="copyResult()">复制结果</button>
+</div>
+<div class="total-price" id="totalDisplay">总计: 0 元</div>
+</div>
+<div class="verify-section">
+<div class="verify-title">🎯 开奖验证（输入开奖号码后核对以上明细）</div>
+<div class="draw-inputs">
+<input type="text" id="drawNormal" placeholder="平码：01 02 03 04 05 06" autocomplete="off">
+<input type="text" id="drawSpecial" placeholder="特码：07" autocomplete="off">
+</div>
+<div class="verify-btns">
+<button class="btn-verify" onclick="verifyDraw()">验证开奖结果</button>
+<button class="btn-verify-copy" onclick="copyVerifyResult()">复制验证结果</button>
+</div>
+<div class="verify-tip" id="verifyTip"></div>
+<div class="verify-summary" id="verifySummary"></div>
+</div>
+<div id="analyticsPanel" style="margin:12px 0;padding:12px;background:#fafafa;border-radius:10px;border:1px solid #e0e0e0;font-size:13px;display:none;">
+<div style="font-weight:bold;font-size:15px;margin-bottom:10px;color:#333;">📊 数据分析</div>
+<div id="analyticsTypes" style="margin-bottom:12px;line-height:2;"></div>
+<div style="font-weight:bold;margin:8px 0 6px;color:#555;">特码号码明细（01-49）</div>
+<div id="analyticsNums" style="display:grid;grid-template-columns:repeat(2,1fr);gap:4px;"></div>
+</div>
+</div>
+<div class="modal-mask" id="customModal">
+<div class="modal-box">
+<div class="modal-title">提示</div>
+<div class="modal-text">确定要清空所有计算明细历史吗？</div>
+<div class="modal-btns">
+<button class="btn-modal-cancel" onclick="closeModal()">取消</button>
+<button class="btn-modal-confirm" onclick="confirmClearAll()">确认</button>
+</div>
+</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
